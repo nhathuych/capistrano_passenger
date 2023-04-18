@@ -58,9 +58,9 @@ set :bundle_flags, '--no-deployment'
 #
 # The server-based syntax can be used to override options:
 # ------------------------------------
-server '44.202.80.177',
+server '54.173.109.86',
   user: 'ubuntu',
-  roles: %w{web app},
+  roles: %w{web app db},
   ssh_options: {
     user: 'ubuntu', # overrides user setting above
     keys: %w(~/Downloads/huykeypair.pem),
