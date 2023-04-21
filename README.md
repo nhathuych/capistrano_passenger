@@ -7,7 +7,6 @@ quá dễ luông :partying_face:
 ## Cài môi trường trên server:
 
 - rvm & ruby
-- bundler
 - nvm & nodejs
 - yarn (cài thông qua npm)
 - postgresql, mysql, ...

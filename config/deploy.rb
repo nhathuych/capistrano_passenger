@@ -5,6 +5,12 @@ set :application, 'rails_seven_exploring'
 set :repo_url, "git@github.com:nhathuych/rails_seven_exploring.git"
 set :ssh_options, { :forward_agent => true }
 
+ask :branch, nil || proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
+
+# chỉ định cho Bundler rằng không tải xuống các phiên bản của các gem phụ thuộc trong Gemfile.lock.
+# Thay vào đó, Bundler sử dụng các phiên bản gem được cài đặt trên máy tính đang chạy để thực hiện các thao tác cài đặt và cập nhật.
+set :bundle_flags, '--no-deployment'
+
 set :pty, true
 
 # Thư mục shared chứa các linked_files và linked_dirs.
@@ -26,23 +32,6 @@ set :passenger_environment_variables, {}
 set :passenger_restart_with_touch, true
 set :passenger_restart_command, 'passenger-config restart-app'  # tự động restart mà ko cần tạo file rake task
 set :passenger_restart_options, -> { "#{deploy_to} --ignore-app-not-running" }
-
-# set :puma_rackup, -> {File.join(current_path, "config.ru")}
-# set :puma_state, -> {"#{shared_path}/tmp/pids/puma.state"}
-# set :puma_pid, -> {"#{shared_path}/tmp/pids/puma.pid"}
-# set :puma_bind, -> {"unix://#{shared_path}/tmp/sockets/puma.sock"}
-# set :puma_conf, -> {"#{shared_path}/puma.rb"}
-# set :puma_access_log, -> {"#{shared_path}/log/puma_access.log"}
-# set :puma_error_log, -> {"#{shared_path}/log/puma_error.log"}
-# set :puma_role, :app
-# set :puma_env, fetch(:rack_env, fetch(:rails_env, "production"))
-# set :puma_threads, [0, 8]
-# set :puma_workers, 0
-# set :puma_worker_timeout, nil
-# set :puma_init_active_record, true
-# set :puma_preload_app, false
-
-# after 'deploy:finished', 'puma_action:restart'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
